@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+/* 
+        @keyframes box{
+            from {background-color:  red}
+            to {background-color:  blue}
+        } */
+
+        @keyframes box{
+            0% {top:0px;}
+            10% {top:200px}
+            20% {top:300px}
+            450% {top:400px}
+            56% {top:500px}
+            80% {top:600px}
+            100% {top:700px}
+
+
+        }
+        div#box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            animation-name : box;
+            animation-duration : 3s;
+            animation-iteration-count: infinite;
+            animation-direction: reverse;
+            position: absolute;
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+    <h1>hello word</h1>
+    <div id="box"></div>
+    
+</body>
+</html>
