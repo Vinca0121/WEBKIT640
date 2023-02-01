@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- // 순서 없는 -->
+    <ul type = "circle" class="myul">
+        <li>red - title01</li>
+        <li>green - title02</li>
+        <li>blue - title03</li>
+    </ul>
+    <!-- 순서 있는 -->
+    <ol type = "a" class="menu">
+        <li>title01</li>
+        <li>title02</li>
+        <li>title03</li>
+    </ol>
+
+
+    <script>
+        //  문서 내의 모든 li요소를 선택해서 liList가 참조하도록 함
+        // li를 포함한 전체 요소를 가지고 옴.
+        var ulTag = document.getElementsByClassName("myul");
+        console.log(ulTag);
+        console.log(ulTag[0]);
+        var liList = ulTag[0].getElementsByTagName("li");
+        console.log(liList);
+        console.log(liList[0]);
+        // liList의 모든 요소에 이벤트 핸들러 한번에 추가
+        // 이벤트 핸들러는 각 요소에 하나만 지정가능하다. (추가되는 개념 X, 맨 마지막 이벤트 핸들러만 적용 됨)
+    
+        for(var i=0; i<liList.length; i++)
+        {
+            liList[i].onclick = function(event)
+            {
+                console.log(event.target.innerText);
+            }
+        }
+        for(var litag of liList)
+        {
+            
+            litag.onclick = function(event)
+            {
+                //this가 아닌 litage로 사용 시, 불가능.
+                this.style.background = "red";
+                console.log(this === event.target);
+                console.log(event.target.innerText);
+            }
+        }
+
+
+    </script>
+</body>
+</html>

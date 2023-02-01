@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <form action="">
+        <b><legend>폼 태그 연습</legend></b>
+        <!-- 라벨을 누르게 되면 해당 id의 인풋에 커서가 자동으로 이동한다 -->
+        <label for="user_name">성명</label>
+        <input type="text" name="Uname" id="user_name">
+        <hr/>
+        성별 :
+        <input type="radio" name="gender" value="남">남
+        <input type="radio" name="gender" value="여">여
+        <hr>
+        취미 :
+        <input type="checkbox" name="hobby" value="놀기" checked>놀기
+        <input type="checkbox" name="hobby" value="책읽기">책읽기
+        <input type="checkbox" name="hobby" value="자기">자기
+        <input type="checkbox" name="hobby" value="행복하기">행복하기
+        <hr/>
+        <select name="사는 곳" id="lived">
+            <option value="대구">대구</option>
+            <option value="서구">서구</option>
+            <option value="중구">중구</option>
+            <option value="북구">북구</option>
+        </select>
+        <hr/>
+        이메일 : <input type="email" name="email">
+        <hr/>
+        나이 : <input type="number">
+        <hr/>
+        <input type="submit" value="제출">
+    </fieldset>
+</form>
+</body>
+</html>

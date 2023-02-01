@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>계산기</h1>
+    <b>단 결과에는 음수가 나오지 않는다(ex. 1 - 10 = 9)</b>
+
+    <br>
+    <input type="number" id="num1" value = "5">
+    <select name="select" id="operation">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+    <input type="number" id="num2" value ="10">
+    <input type="button" id="bt1" value="확인">
+    <div id="result">결과 : </div>
+    
+    <script>
+        var num1 = document.getElementById("num1");
+        var num2 = document.getElementById("num2");
+        var operation = document.getElementById("operation");
+        var bt1 = document.getElementById("bt1"); 
+        var result = document.getElementById("result");
+        var ans ;     
+        bt1.onclick = function(event){
+            if (operation.value == "+")
+            {
+                ans = num1.value*1 + num2.value*1
+                console.log(ans)
+            }
+            else if(operation.value == "-"){
+                ans = Math.abs(num1.value*1 - num2.value*1)
+                console.log(ans)
+            }
+            else if(operation.value == "*"){
+                ans = num1.value*1 * num2.value*1
+                console.log(ans)
+            }
+            else if(operation.value == "/"){
+                ans = num1.value*1 / num2.value*1
+                console.log(ans)
+            }
+            
+            result.innerText = "결과 : "+ ans
+
+        }
+    </script>
+</body>
+</html>

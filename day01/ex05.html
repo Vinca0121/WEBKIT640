@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+        width : 100px;
+        height : 100px;
+        background-color: yellow;
+        border : 2px solid red;
+        /* left는 요소가 레이어여야 한다 */
+        position : absolute;
+        left : 0px;
+        transition: left 0.5s, top 0.5s;
+    }
+    </style>
+</head>
+<body>
+    <button id = "PlayBtn0">0,0</button>
+    <button id = "PlayBtn1">0,200</button>
+    <button id = "PlayBtn2">200,200</button>
+    <button id = "PlayBtn3">200,0</button>
+    <div id="box">Box</div>
+    
+    <script>
+        var playBtnArr = [];
+        var BoxPos = [[0,0],[0,200],[200,200],[200,0]];
+        var playBtn = document.getElementById("playBtn");
+        var Box1 = document.getElementById("box");
+        var colors = ['blue','orange','brown','pink'];
+
+        for(var i = 0; i < 4; i++)
+        {
+            playBtnArr[i] = document.getElementById("PlayBtn"+eval("'"+i+"'"));
+        }
+        for(var i = 0; i < 4; i++)
+        {
+            playBtnArr[i].i = i;
+            playBtnArr[i].onclick = function(event)
+            {
+                Box1.style.left = BoxPos[this.i][0] + 0 + 'px';
+                Box1.style.top = BoxPos[this.i][1] + 30 + 'px';
+                Box1.style.backgroundColor = colors[this.i]
+                console.log(this.i);
+            }
+        }
+    </script>
+
+</body>
+</html>
