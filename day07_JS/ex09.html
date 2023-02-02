@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            position: relative;
+            top: 0;
+            left: 30px;
+            width: 200px;
+            height: 200px;
+            background-color: rgb(125,255,0);
+            border : 2px solid bisque;
+  font-size : 100px;
+  text-align: 50px;
+            /* transition: all .03s; */
+        }
+    </style>
+</head>
+<body>
+    <div id="box">BOX</div>
+    <button type="button" id="btn1">Start button</button>   
+
+    <script>
+        var box = document.querySelector("div#box");
+        var start_button = document.querySelector("button#btn1")
+        
+        //CSS 속성값을 반환
+        var box_css = getComputedStyle(box);
+        //box_css의 left값을 가져와 Int로 변환
+        var box_css_left = parseInt(box_css.left);
+
+        
+        function move(callback)
+        {
+            box.callback = callback;
+            let box_left = box_css_left;
+            var interval = setInterval(function(){
+                box_left += 1;
+                box.callback(box_left);
+                if(box_left >= 300){
+                    clearInterval(interval);
+                }
+            },0.3)
+        }
+
+        start_button.onclick = function(events){
+            move(function(box_left) {
+                this.style.left = box_left + "px";
+        })};
+    </script>
+
+</body>
+</html>

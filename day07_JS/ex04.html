@@ -1,0 +1,29 @@
+
+    <script>
+        // 클래스 식별자는 대문자로 시작한다.
+        // 클래스 생성자 선언
+        function People() {
+            this.name = "홍";
+
+
+            this.move = function() {
+                console.log(this); // People
+                var cnt = 0;
+
+
+                var ref = setInterval(function() {
+                    console.log(this); // Window
+                    //console.log(this.name);
+                    // setInterval 내부에서 People의 멤버를 접근 하는 방법은?
+                    if(++cnt >= 10) {
+                        console.log(cnt);
+                        clearInterval(ref);
+                    }
+                }, 100);
+            }
+        }
+
+        // 객체 생성
+        var p = new People();
+        p.move()
+    </script>

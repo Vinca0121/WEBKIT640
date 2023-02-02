@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        ul#menu > li{
+            display: inline-block;
+            height: 40px;
+            width: 100px;
+            border : 2px solid beige;
+            line-height:  40px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <ul id="menu">
+        <li data-no="0">입력</li>
+        <li data-no="1">출력</li>
+        <li data-no="2">검색</li>
+        <li data-no="3">수정</li>
+        <li data-no="4">삭제</li>
+    </ul>
+
+    <script>
+        var btns = document.querySelectorAll("ul#menu>li");
+        btns.forEach((data, index) => {
+            data.onclick = (event)  => {
+                //console.log(this);
+                console.log(event.target);
+            }
+        });
+    </script>
+</body>
+</html>

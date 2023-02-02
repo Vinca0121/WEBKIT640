@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            position: relative;
+            top: 0;
+            left: 30px;
+            width: 200px;
+            height: 200px;
+            background-color: rgb(125,255,0);
+            border : 2px solid bisque;
+  font-size : 100px;
+  text-align: 50px;
+            /* transition: all .03s; */
+        }
+    </style>
+</head>
+<body>
+    <div id="box">BOX</div>
+    <button type="button" id="btn1">Start button</button>   
+
+    <script>
+        var box = document.querySelector("div#box");
+        var start_button = document.querySelector("button#btn1")
+
+        
+        function test(callback)
+        {
+            box.callback_2 = callback;
+            box.callback_2();
+        }
+
+        start_button.onclick = function(event){
+            console.log(this, "1번째 this")
+            test(function()
+                {
+                console.log(this, "2번째 this");
+                }
+            )
+;        };
+    </script>
+
+</body>
+</html>
