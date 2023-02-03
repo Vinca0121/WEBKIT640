@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+function setTimeoutPromise(delay) {
+  return new Promise((resolve, reject) => 
+  {
+    setTimeout(() => {resolve()
+        console.log('timeout 실행됨')
+    }, delay)
+  });
+}
+
+async function startAsync() {
+  await setTimeoutPromise(1000);
+  await setTimeoutPromise(1500);
+  await setTimeoutPromise(2000); // 프로그래머는 뭔가 기다리겠다는 의도를 비쳤습니다.
+}
+
+console.log("시작입니다.");
+
+
+async function startAsyncJobs() {
+try {
+    const promise = await startAsync();
+    console.log("끝났습니다?");
+}
+catch (e)
+{
+
+}
+}
+
+startAsyncJobs();
+
+
+
+
+    </script>
+</body>
+</html>

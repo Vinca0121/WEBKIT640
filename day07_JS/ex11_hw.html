@@ -35,11 +35,13 @@
             width : 308px;
             height: 105px;
             overflow: hidden;
+            position: relative;
         }
         div.gameBox ul {
             margin: 0;
             padding: 0px;
             float: left;
+            position: relative;
         }
         div.gameBox li {
             width: 100px;
@@ -49,6 +51,7 @@
             font-size : 60px;
             font-weight: bold;
             text-align: center;
+            position: relative;
             /* background-color: white; */
         }
         div.gameBox #num1 {
@@ -98,6 +101,7 @@
                 this.ulTag = document.createElement("ul");
                 for(var i=1; i<=9; i++) {
                     var li = document.createElement("li");
+                    
                     li.innerText = i;
                     li.id = "num" + i.toString();
                     this.ulTag.appendChild(li);
@@ -109,7 +113,7 @@
             }
 
             this.play = function(callback) {
-                this.ulTag.style.position = "relative";
+                // this.ulTag.style.position = "absolute";
                 let y = 0;
                 var stop = Math.abs(Math.floor(Math.random()*4) );
                 //console.log(stop, "stop");
