@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo"></div>
+
+    <script>
+        class MyDivCell{
+            constructor(id){
+                this.id = id;
+                this.newdiv = document.createElement('div');
+                this.newdiv.innerHTML = content;
+                console.log(this.newdiv);
+            }
+        }
+
+        const poly = new MyDivCell(100);
+        console.log(poly.id);
+    </script>
+</body>
+</html>

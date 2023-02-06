@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div#box {
+            background: linear-gradient(
+               45deg,
+               rgba(126, 168, 164, 1) 26%,
+               rgba(81, 169, 181, 1) 49%,
+               rgba(54, 80, 199, 1) 84%
+            );
+            background-blend-mode: multiply;
+            transition: background-color 100ms ease-out;
+            
+            position: absolute;
+            border-radius: 0%;
+            width: 100px;
+            height:  100px;
+            text-align: center;
+            font-size: 30px;
+            line-height : 90px;
+            top: 350px;
+            left: 20px;
+
+        }
+
+        div#box:hover {
+            background-color: rgba(209, 72, 212, 1);
+        }
+
+        
+        ul#ul1{
+            width: 360px;
+            height: 90px; 
+            padding: 10px;
+            border: 1px solid black;
+            position: relative;
+            
+        }
+
+        li{
+            width: 70px;
+            height: 40px;
+            border: 1px solid pink;
+            list-style: none;
+            font-size : 20px;
+            font-weight: bold;
+            text-align: center;
+            float: left;
+            line-height: 40px;
+            overflow: hidden;
+            
+        }
+        
+    </style>
+</head>
+<body>
+    <h3>비동기로 작동 하는 <span style = "color : red">"숫자 증가"</span></h3>
+
+    <h3>동기로 작동하는 <span style = "color : red">"BOX 이동"</span></h3>
+
+    <ul id="ul1">
+        <li id="list"></li>
+        <li id="list"></li>
+        <li id="list"></li>
+        <li id="list"></li>
+        <li id="list"></li>
+        <li id="list"></li>
+        <li id="list"></li>
+        <li id="list"></li>
+        <li id="list"></li>
+        <li id="list"></li>
+    </ul>
+
+    <h3 id="cal"></h3>
+    <div id="box">Move!</div>
+    
+    <script>
+
+        // 동기 작업
+        var box = document.getElementById("box");
+        box.addEventListener("mousedown", (event)=>{
+            var box1 = event.target;
+            var box1_css = getComputedStyle(box1);
+            
+            // 단순 마우스 클릭된 위치와 BOX사이의 간격 계산
+            box1_X = parseInt(box1_css.getPropertyValue("left"))
+            box1_Y = parseInt(box1_css.getPropertyValue("top"))
+        
+            gapX = event.clientX - box1_X;
+            gapY = event.clientY - box1_Y;
+
+            var mousemoveListener = function(event){
+            event.target.style.left = event.clientX -gapX + "px";
+            event.target.style.top = event.clientY -gapY+ "px";
+            }
+            box.addEventListener("mousemove", mousemoveListener);
+            
+            box.addEventListener("mouseup", ()=>{
+                box.removeEventListener("mousemove", mousemoveListener);
+            })
+        })
+        
+        // 비동기 작업
+        var cal = document.getElementById("cal");
+        var li = document.querySelectorAll("#list");
+        
+
+        
+        function setTimeoutPromise(subject){
+            //cal.innerHTML = " ";
+            var num = Math.floor(Math.random() * 101);
+            return new Promise((resolve, reject) => {
+                setTimeout(() =>{
+                    cal.innerText += `${subject} : ${num}\u00a0`
+                    resolve(num)
+                },1000)
+                
+            })
+        }
+
+        function setTimeoutPromise2(){
+            return new Promise((resolve, reject) => {
+                setTimeout(() =>{
+                    resolve()
+                },500)
+                
+            })
+        }
+
+
+        // 계산해주는 함수
+        async function calcutlator(i)
+        {
+            var subject = ["수학", "영어", "과학"]
+            var num1 = await setTimeoutPromise(subject[0]);
+            var num2 = await setTimeoutPromise(subject[1]);
+            var num3 = await setTimeoutPromise(subject[2]);
+
+            var avarage = Math.round((num1 + num2 + num3) / 3) 
+            
+            cal.innerHTML += `<p>[평균 : ${avarage}]</P>`
+            li[i].innerText = avarage;
+            await setTimeoutPromise2();
+            //cal.innerHTML = " ";
+            return avarage;
+        }
+
+        
+
+        async function startAsyncJobs()
+        {
+            var promiss_arr = [];
+            for(var i = 0; i < 10; i++)
+            {
+                let mypromise = calcutlator(i);
+                promiss_arr.push(mypromise);
+                //li[i].innerText = avg;
+            }
+            await Promise.all(promiss_arr);
+
+            
+
+            var all_avg = 0;
+            for(var i = 0; i < 10; i++)
+            {
+                let inner = parseInt(li[i].innerText);
+                all_avg  += inner;
+            }
+            //cal.innerHTML = `최종 평균 : ${all_avg/10}`    
+        }
+
+        startAsyncJobs();
+    </script>
+</body>
+</html>

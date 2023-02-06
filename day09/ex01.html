@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div#box {
+            position: absolute;
+            border: 1px solid red;
+            background-color: yellow;
+            width: 100px;
+            height:  100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>길동이의 코딩 교실</h1>
+    <div id="box">box1</div>
+    <script>
+        var box = document.getElementById("box");
+
+
+        box.onclick = function(){
+                console.log("click!");
+            }
+
+            box.onclick = function(){
+                console.log("click!2");
+            }    
+
+        box.addEventListener("mousedown", (ev)=>{
+
+            
+
+            console.log(ev.clientX);
+
+            var box1 = ev.target;
+            var box1_css = getComputedStyle(box1);
+            
+            // 단순 마우스 클릭된 위치와 BOX사이의 간격 계산
+            box1_X = parseInt(box1_css.getPropertyValue("left"))
+            box1_Y = parseInt(box1_css.getPropertyValue("top"))
+            
+            //console.log(typeof(box1_css))
+            //console.log((box1_css))
+            gapX = ev.clientX - box1_X;
+            gapY = ev.clientY - box1_Y;
+
+
+            var mousemoveListener = function(ev){
+            box1_css.left = ev.clientX -gapX + "px";
+            ev.target.style.top = ev.clientY -gapY+ "px";
+        }
+            box.addEventListener("mousemove", mousemoveListener);
+            
+            box.addEventListener("mouseup", (ev)=>{
+                box.removeEventListener("mousemove", mousemoveListener);
+                console.log("up!");
+            })
+        })
+
+        box.addEventListener("click", (ev)=>{
+
+            console.log("2222mousedown!")
+        })
+    
+    </script>
+</body>
+</html>
