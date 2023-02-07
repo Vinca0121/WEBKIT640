@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>local Storage 실습</h1>
+    <script>
+        var arr = ["대구zzz", "명태zzz", "거북이", "연어알", "물새알"];
+
+        localStorage.setItem("user", "Mr.kim")
+        localStorage.setItem("Dokdo", arr)
+
+        let temp = localStorage.getItem("user");
+        let temp2 = localStorage.getItem("Dokdo");
+        console.log(temp2);
+        document.write(temp);
+        document.write(temp2);
+        
+        
+        
+        // localStorage.removeItem("D");
+    </script>
+
+</body>
+</html>

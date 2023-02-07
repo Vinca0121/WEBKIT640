@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>local Storage 실습</h1>
+    <script>
+        localStorage.clear();
+        // localStorage.setItem("temp", 1)
+        // let temp = localStorage.getItem("temp");
+
+        // if (typeof(temp) == typeof("1"))
+        // {
+        //     document.write("temp의 타입은 String 입니다")
+        // }
+        // else if (typeof(temp) == typeof(1))
+        // {
+        //     document.write("temp의 타입은 Int 입니다")
+        // }
+
+        localStorage.setItem('json_temp', JSON.stringify({num: 1}))
+        let json_temp = JSON.parse(localStorage.getItem('json_temp'))
+        let number = json_temp['num']
+        
+        if (typeof(number) == typeof("1"))
+        {
+            document.write("temp의 타입은 String 입니다")
+        }
+        else if (typeof(number) == typeof(1))
+        {
+            document.write("temp의 타입은 Int 입니다")
+        }
+        
+    </script>
+
+</body>
+</html>
