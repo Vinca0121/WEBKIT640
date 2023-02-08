@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="inputForm" action="/people/input" method="post" enctype="multipart/form-data">
+        사용자 : <input type="text" name="username" value="vinca"><br/>
+        이메일 : <input type="email" name="email" value="asd@asd.com"><br/>
+        번 호 : <input type="text" name="phonenumber" value="10">
+        <br/><p></p>
+        사진 선택 : <input type="file" multiple="multiple" name="photo_file" id="photo_file" accept="images/gif, image/jpeg, image/png"><br/>
+        <p></p>
+        <input type="submit" value="전송">
+    </form>
+    <div id="preview">사진 미리보기</div>
+
+
+    <script>
+        var inputForm = document.querySelector("#inputForm");
+        var preview = document.querySelector("#preview");
+        var photo_file = document.querySelector("#photo_file");
+
+        photo_file.addEventListener("change", (event)=>{
+            let input = event.target;
+            // 비동기로 수행되는 부분
+            if(input.files)
+            {
+                preview.innerHTML = "";
+                for(var i =0; i <input.files.length; i++){
+                    let filereader = new FileReader();
+                    // 리스너를 추가
+                    filereader.addEventListener("load", (e)=>{
+                        let readImg = e.target.result;
+                        preview.innerHTML += `<img src="${readImg}" width="200"/>`;   
+                    })
+                    // 실제 읽는 부분
+                    filereader.readAsDataURL(input.files[i]);
+                }
+            }
+            //
+
+        });
+    </script>
+
+</body>
+</html>
