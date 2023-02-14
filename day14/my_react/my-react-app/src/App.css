@@ -1,0 +1,14 @@
+/* input 태그 중에 disabled가 있다면 */
+input[disabled] {
+    border: 1px;
+    background-color: pink;
+}
+input[edit_enabled] {
+    border: 1px;
+    background-color: pink;
+}
+.fin{
+    text-decoration: line-through;
+    background-color: lightyellow;
+}
+
