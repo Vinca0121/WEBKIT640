@@ -29,8 +29,8 @@ app.post("/people/input", function(req, res){
     form.parse(req, function (err, fields, files) {
         console.log(util.inspect({fields: fields, files: files}))
 
-        
-        // var oldpath = files.photo_file.filepath;
+         
+        var oldpath = files.photo_file[];
         // var newpath = __dirname + "/images/" + files.photo_file.originalFilename;
         // const rs = fs.createReadStrseam(oldpath);
 	    // const ws = fs.createWriteStream(newpath);
