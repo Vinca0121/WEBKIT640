@@ -6,7 +6,7 @@ import io from "socket.io-client";
 
 // React 창이 새롭게 생설될 때 마다, 클라이언트 또한 새롭게 생성됨
 // 1. 서버로 소켓 conncet 요청
-const socket = io.connect("http://3.36.89.58:80");
+const socket = io.connect("http://127.0.0.1:80");
 
 // 2. 클라이언트에서 서버쪽으로 데이터를 전달 (데이터  송/수신 확인)
 socket.emit("init", "[init] Client -> Server");
@@ -48,7 +48,10 @@ function App() {
   //전송 버튼을 눌렀을 때 send message이벤트 발생
   const buttonHandler = useCallback((e) => {
     socket.emit("send message", { name: chat.name, message: chat.message }); 
+    e.target.value = "";
   }, [chat]);
+
+
 
   
   // setChat으로 State를 변경
@@ -65,6 +68,17 @@ function App() {
   },[chat]);
 
 
+  const onKeyDown = ((e) => {
+    if (e.key === "Enter") {
+      buttonHandler();
+      e.target.value = "";
+    }
+  })
+
+  const BoxChanged = ((e)=>{
+    console.log("e");
+    e.target.scrollTop = e.target.scrollHeight;
+  })
   return (
     <div className="App">
       <div className="Box">
@@ -83,8 +97,9 @@ function App() {
         {/* 입력 창 */}
         <div className="InputBox">
           
-          <input placeholder="이름" onChange={changeName}></input>
-          <input placeholder="내용" onChange={changeMessage}></input>
+          <input className="InputName" placeholder="이름" onChange={changeName}></input>
+          <span></span>
+          <input className="InputText" placeholder="내용" onChange={changeMessage} onKeyDown = {onKeyDown}></input>
           <button onClick={buttonHandler}>등록</button>
         </div>
         

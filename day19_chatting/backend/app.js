@@ -2,7 +2,7 @@
 const httpServer = require("http").createServer();
 const io = require("socket.io")(httpServer, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "*",
     methods: ["GET", "POST"],
   },
 });
@@ -29,4 +29,9 @@ io.on("connection", (socket) => {
 
 });
 
-httpServer.listen(80);
+httpServer.listen((80), function(){
+  console.log('Http server listening on port 80');
+});
+
+
+
